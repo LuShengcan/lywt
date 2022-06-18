@@ -64,7 +64,7 @@ def bilibili(url, dest, audio_or_video):
 
 
 def kugou(url, dest):
-    '''
+    """
         url = 'https://www.kugou.com/mixsong/49zyubb7.html?frombaidu#hash=04BBC1EC0A36C36457541588F0A6B337&album_id=37714499&album_audio_id=258659363'
 
         address:
@@ -73,7 +73,7 @@ def kugou(url, dest):
             &dfid=0R7vvH0Zd9bG4fCYat0Ad5ge&appid=1014&mid=c25d7ff99a965e5755984d727fccd663&platid=4   // 固定
             &album_id=970232    // 可得
             &album_audio_id=32130860  // 可得
-    '''
+    """
     hash = 'hash=.*?&'
     hash = re.findall(hash, url)[0]
     album_id = 'album_id=[0-9]*'
@@ -81,9 +81,8 @@ def kugou(url, dest):
     # album_audio_id = 'album_audio_id.*?$'
     # album_audio_id = re.findall(album_audio_id, url)[0]
 
-    address = 'https://wwwapi.kugou.com/yy/index.php?r=play/getdata&callback=jQuery19106392951916303002_1654082244006&'+ hash + 'dfid=0R7vvH0Zd9bG4fCYat0Ad5ge&appid=1014&mid=c25d7ff99a965e5755984d727fccd663&platid=4&' + album_id
+    address = 'https://wwwapi.kugou.com/yy/index.php?r=play/getdata&callback=jQuery19106392951916303002_1654082244006&' + hash + 'dfid=0R7vvH0Zd9bG4fCYat0Ad5ge&appid=1014&mid=c25d7ff99a965e5755984d727fccd663&platid=4&' + album_id
     print(address)
-
 
     headers = {
         'User-Agent': DEFAULT_USER_AGENT,
@@ -105,4 +104,4 @@ def kugou(url, dest):
 if __name__ == '__main__':
     kugou(url='https://www.kugou.com/song/#hash=2E2F2542F67B2B06699D6663C65380EE&album_id=558301', dest='./4.mp3')
     pass
-# 有点甜
+    # 有点甜
