@@ -7,14 +7,14 @@ URL = 'https://github.com/LuShengcan'
 AUTHOR_EMAIL = 'shengcan_lu@foxmail.com'
 AUTHOR = 'laolu'
 REQUIRES_PYTHON = '>=3.0'
-VERSION = '0.0.11'
+VERSION = '0.0.12'
 
-# 打包命令
+# 打包发布命令
 # python setup.py sdist build
 # twine upload dist/lywt-0.0.11.tar.gz
 
 # What packages are required for this module to be executed?
-REQUIRED = ['requests', 'bs4', 'lxml']
+REQUIRED = ['requests', 'bs4', 'lxml', 'windnd']
 
 # Setting.
 setup(
