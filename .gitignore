@@ -1,3 +1,5 @@
 # 排除以下文件
+.gitignore
+.idea
 note.txt
 setup.py
