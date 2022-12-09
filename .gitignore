@@ -1,0 +1,3 @@
+# 排除以下文件
+note.txt
+setup.py
