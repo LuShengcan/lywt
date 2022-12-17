@@ -24,10 +24,6 @@ def savePage(url: str, headers=DEFAULT_HEADERS, dest: str = './page.html', encod
 
 
 def download(url: str, dest: str, headers=None):
-    r"""
-        @parama hahahjh
-        sadajhgfsdkhjg
-    """
     headers = DEFAULT_HEADERS
     try:
         response = requests.get(url=url, headers=headers,
