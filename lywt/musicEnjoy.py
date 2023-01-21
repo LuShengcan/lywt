@@ -3,28 +3,24 @@ import requests
 from bs4 import BeautifulSoup
 import json
 
-DEFAULT_USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0'
-
-DEFAULT_HEADERS = {
-    'User-Agent': DEFAULT_USER_AGENT,
-}
+DEFAULT_USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:108.0) Gecko/20100101 Firefox/108.0'
 
 
-def getPage(url, headers=DEFAULT_HEADERS, encoding='utf-8') -> str:
+def getPage(url, encoding='utf-8') -> str:
+    headers = {'User-Agent': DEFAULT_USER_AGENT}
     response = requests.get(url=url, headers=headers)
     print(response.status_code)
     content = response.content.decode(encoding=encoding)
     return content
 
 
-def savePage(url: str, headers=DEFAULT_HEADERS, dest: str = './page.html', encoding='utf-8'):
-    page = getPage(url=url, headers=headers, encoding=encoding)
+def savePage(url: str, dest: str = './page.html', encoding='utf-8'):
+    page = getPage(url=url, encoding=encoding)
     with open(dest, 'w', encoding=encoding) as fw:
         fw.write(page)
 
 
-def download(url: str, dest: str, headers=None):
-    headers = DEFAULT_HEADERS
+def download(url: str, dest: str, headers: dict):
     try:
         response = requests.get(url=url, headers=headers,
                                 stream=True, verify=True)
@@ -39,7 +35,7 @@ def download(url: str, dest: str, headers=None):
     return
 
 
-def bilibili(url, dest, audio_or_video):
+def bilibili(url: str, dest: str, audio_or_video: str):
     headers = {
         'User-Agent': DEFAULT_USER_AGENT,
         "Origin": 'https://www.bilibili.com/',
@@ -48,17 +44,17 @@ def bilibili(url, dest, audio_or_video):
     response = requests.get(url=url, headers=headers)
     soup = BeautifulSoup(response.text, 'lxml')
     video_url = ''
-    audio_rul = ''
+    audio_url = ''
     for i in range(len(soup('script'))):
         pattern = 'window.__playinfo__='
         if str(soup('script')[i].string)[:len(pattern)] == pattern:
             info = str(soup('script')[i].string)[len(pattern):]
             info_dict = json.loads(info)
             video_url = info_dict['data']['dash']['video'][0]['baseUrl']
-            audio_rul = info_dict['data']['dash']['audio'][0]['baseUrl']
+            audio_url = info_dict['data']['dash']['audio'][0]['baseUrl']
             break
     if audio_or_video == 'audio':
-        download(url=audio_rul, dest=dest, headers=headers)
+        download(url=audio_url, dest=dest, headers=headers)
     if audio_or_video == 'video':
         download(url=video_url, dest=dest, headers=headers)
     return
@@ -75,16 +71,19 @@ def kugou(url, dest):
             &album_id=970232    // 可得
             &album_audio_id=32130860  // 可得
     """
-    hashCode = 'hash=.*?&'
-    hashCode = re.findall(hashCode, url)[0]
-    album_id = 'album_id=[0-9]*'
-    album_id = re.findall(album_id, url)[0]
+    # hashCode = 'hash=.*?&'
+    # hashCode = re.findall(hashCode, url)[0]
+    # album_id = 'album_id=[0-9]*'
+    # album_id = re.findall(album_id, url)[0]
     # album_audio_id = 'album_audio_id.*?$'
     # album_audio_id = re.findall(album_audio_id, url)[0]
 
+    hashCode = 'EBCCDE59F97BC06183F3B1A8502B7479'
+    album_id = '2nc3vnfe'
+
     address = 'https://wwwapi.kugou.com/yy/index.php?r=play/getdata&callback=jQuery191063929519' \
               '16303002_1654082244006&' + hashCode + 'dfid=0R7vvH0Zd9bG4fCYat0Ad5ge&appid=1014&mid' \
-              '=c25d7ff99a965e5755984d727fccd663&platid=4&' + album_id
+                                                     '=c25d7ff99a965e5755984d727fccd663&platid=4&' + album_id
     print(address)
 
     headers = {
@@ -93,7 +92,7 @@ def kugou(url, dest):
         "Referer": 'https://www.kugou.com/',
     }
     mp3 = "\"play_url\":\"https:.*?\""
-    page = getPage(url=address, headers=headers)
+    page = getPage(url=address)
     print(page)
     mp3 = re.findall("\"play_url\":\"https:.*?\"", page)[0][11:]
     print(mp3)
@@ -105,6 +104,5 @@ def kugou(url, dest):
 
 
 if __name__ == '__main__':
-    kugou(url='https://www.kugou.com/song/#hash=2E2F2542F67B2B06699D6663C65380EE&album_id=558301', dest='./4.mp3')
+    print('hello world')
     pass
-    # 有点甜
