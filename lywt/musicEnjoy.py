@@ -104,5 +104,7 @@ def kugou(url, dest):
 
 
 if __name__ == '__main__':
-    print('hello world')
+    # print('hello world')
+    # m = "https://www.bilibili.com/video/BV15841137Ge/"
+    # bilibili(m, '1.mp3', 'audio')
     pass
