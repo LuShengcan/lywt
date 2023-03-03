@@ -1,0 +1,8 @@
+# 排除以下文件
+.gitignore
+.idea
+note.txt
+setup.py
+lywt.egg-info
+build
+lywt/test.py
