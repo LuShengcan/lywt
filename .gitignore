@@ -7,3 +7,4 @@ lywt.egg-info
 build
 lywt/test.py
 lywt/__pycache__
+dist
