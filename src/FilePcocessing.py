@@ -1,8 +1,6 @@
 import tkinter as tk
-from tkinter import scrolledtext
 from tkinter import ttk
-from tkinter import StringVar
-from gui.fileMD5_gui import FileMD5
+from src.gui.fileMD5_gui import FileMD5
 
 
 class App(tk.Tk):
@@ -33,8 +31,8 @@ class App(tk.Tk):
 
     def fileMD5(self):
         subWin = FileMD5()
-        subWin.transient(self)      # 和master共用一个窗口
-        # subWin.grab_set()         # 禁止操作主窗口
+        subWin.attributes('-topmost', True)
+        subWin.mainloop()
 
 
 if __name__ == '__main__':

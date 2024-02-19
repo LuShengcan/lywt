@@ -1,10 +1,10 @@
-# 排除以下文件
-.gitignore
+# build生成
+build/
+dist/
+lywt.egg-info/
+
+# pycharm配置
 .idea
-note.txt
-setup.py
-lywt.egg-info
-build
-lywt/test.py
-lywt/__pycache__
-dist
+
+# 其他
+**/__pycache__/

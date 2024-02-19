@@ -2,10 +2,10 @@ import tkinter as tk
 from tkinter import ttk
 import windnd
 from tkinter import scrolledtext
-# from cli.fileMD5 import md5
+from src.cli.fileMD5 import md5
 
 
-class FileMD5(tk.Toplevel):
+class FileMD5(tk.Tk):
     def __init__(self):
         super().__init__()
         self.creat_window()
@@ -45,7 +45,8 @@ class FileMD5(tk.Toplevel):
         for path in file_paths:
             path: bytes = path.decode()
             self.text_10.insert(tk.END, path + '\n')
-            # self.text_11.insert(tk.END, md5(path) + '\n')
+            self.text_11.insert(tk.END, md5(path) + '\n')
+
 
 if __name__ == '__main__':
     app = FileMD5()

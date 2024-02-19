@@ -1,0 +1,6 @@
+打包可执行文件
+pyinstaller -F main.py
+
+打包发布命令
+python setup.py sdist build
+twine upload dist/lywt-0.0.16.tar.gz
