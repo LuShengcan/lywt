@@ -5,5 +5,5 @@ def HexByte2Char(txt: str):
     return ''.join(chars)
 
 if __name__ == '__main__':
-    txt = '52656164426f6172644944'
+    txt = '73'
     print(HexByte2Char(txt))
