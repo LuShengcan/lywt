@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-from src.gui.fileMD5_gui import FileMD5
+from .gui.fileMD5_gui import FileMD5
 
 
 class App(tk.Tk):
@@ -33,8 +33,3 @@ class App(tk.Tk):
         subWin = FileMD5()
         subWin.attributes('-topmost', True)
         subWin.mainloop()
-
-
-if __name__ == '__main__':
-    app = App()
-    app.mainloop()
