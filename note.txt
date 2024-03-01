@@ -1,5 +1,11 @@
 # 打包可执行文件
-pyinstaller -F main.py
+pyinstaller -n [app_name] --noconsole main.py
+-n 指定目标目录
+--noconsole 不包含控制台
+-F 打包成单文件
+
+
+
 
 # 打包命令
 python setup.py sdist build
