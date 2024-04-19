@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from .gui.fileMD5_gui import FileMD5
+from .gui.ascii_char_gui import Ascii
 
 
 class App(tk.Tk):
@@ -21,16 +22,19 @@ class App(tk.Tk):
         self.geometry(f"{self.window_width}x{self.window_height}+{x}+{y}")
 
     def create_widgets(self):
-        # row 0
         self.button_00 = ttk.Button(self, text='文件MD5计算', command=self.fileMD5)
-        # self.button_01 = ttk.Button(self, text='', command=self.fileCut)
+        self.button_01 = ttk.Button(self, text='ascii和字符转换', command=self.ascii)
 
     def grid(self):
-        # row 0
         self.button_00.grid(row=0, column=0)
+        self.button_01.grid(row=0, column=1)
 
     def fileMD5(self):
         subWin = FileMD5()
         subWin.attributes('-topmost', True)
         subWin.mainloop()
 
+    def ascii(self):
+        subWin = Ascii()
+        subWin.attributes('-topmost', True)
+        subWin.mainloop()
