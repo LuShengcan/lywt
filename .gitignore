@@ -1,5 +1,5 @@
 # build生成
-build/
+
 dist/
 lywt.egg-info/
 
@@ -8,3 +8,9 @@ lywt.egg-info/
 
 # 其他
 **/__pycache__/
+
+
+
+# pyinstaller -n [app_name] --noconsole main.py 生成
+build/
+lywt.spec
