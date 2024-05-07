@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
-from .gui.fileMD5_gui import FileMD5
-from .gui.ascii_char_gui import Ascii
+from .fileMD5.gui import FileMD5
+from .ascii2char.gui import Ascii
 
 
 class App(tk.Tk):

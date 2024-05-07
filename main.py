@@ -1,4 +1,4 @@
-from lywt.tools import App
+from lywt import App
 
 if __name__ == '__main__':
     app = App()

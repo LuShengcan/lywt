@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 import windnd
 from tkinter import scrolledtext
-from ..cli.fileMD5 import md5
+from .cli import md5
 
 
 class FileMD5(tk.Tk):
@@ -43,6 +43,10 @@ class FileMD5(tk.Tk):
 
     def drag_files(self, file_paths):
         for path in file_paths:
-            path: bytes = path.decode()
-            self.text_10.insert(tk.END, path + '\n')
-            self.text_11.insert(tk.END, md5(path) + '\n')
+            try:
+                path: bytes = path.decode('utf-8')
+            except UnicodeDecodeError:
+                path: bytes = path.decode('gbk')
+            finally:
+                self.text_10.insert(tk.END, path + '\n')
+                self.text_11.insert(tk.END, md5(path) + '\n')
