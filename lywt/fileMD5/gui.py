@@ -5,12 +5,12 @@ from tkinter import scrolledtext
 from .cli import md5
 
 
-class FileMD5(tk.Tk):
-    def __init__(self):
-        super().__init__()
+class FileMD5(tk.Toplevel):
+    def __init__(self, parent):
+        super().__init__(parent)
         self.creat_window()
         self.create_widgets()
-        self.grid()
+        self.grid_widgets()
         windnd.hook_dropfiles(self.text_10, func=self.drag_files)
 
     def creat_window(self):
@@ -32,7 +32,7 @@ class FileMD5(tk.Tk):
         self.text_10 = scrolledtext.ScrolledText(self, width=50, height=10)
         self.text_11 = scrolledtext.ScrolledText(self, width=35, height=10)
 
-    def grid(self):
+    def grid_widgets(self):
         # row 0
         self.label_00.grid(row=0, column=0, sticky='w')
         self.label_01.grid(row=0, column=1, sticky='w')

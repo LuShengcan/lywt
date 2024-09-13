@@ -7,7 +7,7 @@ def get_small_version():
     max_small_version = -1
 
     for file in os.listdir('dist'):
-        match = re.match('.*?(\\d+)\\.(\\d+)', file)
+        match = re.match('.*?_v(\\d+)\\.(\\d+)', file)
         if match:
             max_small_version = max(max_small_version, int(match.group(2)))
 
