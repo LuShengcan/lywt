@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk, StringVar
 from datetime import datetime
 import time
-from .cli import generate_imei
+from .imei_cli import generate_imei
 
 
 class IMEI(tk.Toplevel):

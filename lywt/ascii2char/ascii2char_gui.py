@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import scrolledtext
-from .cli import *
+from .ascii2char_cli import *
 
 
 class Ascii(tk.Toplevel):

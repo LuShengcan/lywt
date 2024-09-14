@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 import windnd
 from tkinter import scrolledtext
-from .cli import md5
+from .fileMD5_cli import md5
 
 
 class FileMD5(tk.Toplevel):

@@ -1,8 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
-from .fileMD5.gui import FileMD5
-from .ascii2char.gui import Ascii
-from .imei.gui import IMEI
+from .fileMD5.fileMD5_gui import FileMD5
+from .ascii2char.ascii2char_gui import Ascii
+from .imei.imei_gui import IMEI
 
 class App(tk.Tk):
     def __init__(self):
