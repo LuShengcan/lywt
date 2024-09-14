@@ -3,6 +3,8 @@ from tkinter import ttk
 from .fileMD5.fileMD5_gui import FileMD5
 from .ascii2char.ascii2char_gui import Ascii
 from .imei.imei_gui import IMEI
+from .shutdown_pc.shutdown_pc_gui import ShutdownPC
+
 
 class App(tk.Tk):
     def __init__(self):
@@ -25,13 +27,13 @@ class App(tk.Tk):
         self.button_00 = ttk.Button(self, text='文件MD5计算', command=self.fileMD5)
         self.button_10 = ttk.Button(self, text='ascii和字符转换', command=self.ascii)
         self.button_20 = ttk.Button(self, text='号段生成', command=self.imei)
-
+        self.button_30 = ttk.Button(self, text='计划关机', command=self.ShutdownPC)
 
     def grid_widgets(self):
         self.button_00.grid(row=0, column=0)
         self.button_10.grid(row=1, column=0)
         self.button_20.grid(row=2, column=0)
-
+        self.button_30.grid(row=3, column=0)
 
     def fileMD5(self):
         subWin = FileMD5(self)
@@ -43,4 +45,8 @@ class App(tk.Tk):
 
     def imei(self):
         subWin = IMEI(self)
+        subWin.grab_set()
+
+    def ShutdownPC(self):
+        subWin = ShutdownPC(self)
         subWin.grab_set()
