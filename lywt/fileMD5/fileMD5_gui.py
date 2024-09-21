@@ -24,20 +24,16 @@ class FileMD5(tk.Toplevel):
         self.geometry(f"{self.window_width}x{self.window_height}+{x}+{y}")
 
     def create_widgets(self):
-        # row 0
         self.label_00 = tk.Label(self, text='拖放文件：')
         self.label_01 = ttk.Label(self, text='MD5值：')
 
-        # row 1
         self.text_10 = scrolledtext.ScrolledText(self, width=50, height=10)
         self.text_11 = scrolledtext.ScrolledText(self, width=35, height=10)
 
     def grid_widgets(self):
-        # row 0
         self.label_00.grid(row=0, column=0, sticky='w')
         self.label_01.grid(row=0, column=1, sticky='w')
 
-        # row 1
         self.text_10.grid(row=1, column=0)
         self.text_11.grid(row=1, column=1)
 
