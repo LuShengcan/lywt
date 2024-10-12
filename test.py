@@ -1,36 +1,26 @@
 import tkinter as tk
-from tkinter import ttk
 
-# 子窗口类
-class ToolWindow(tk.Toplevel):
-    def __init__(self, parent, tool_name):
-        super().__init__(parent)
-        self.title(f"{tool_name} 窗口")
-        self.geometry("300x200")
-        label = ttk.Label(self, text=f"这是 {tool_name} 的子窗口")
-        label.pack(pady=20)
+def show_selected_option():
+    selected_value = radio_var.get()
+    print(f"Selected option: {selected_value}")
 
-# 主窗口类
-class MainApp(tk.Tk):
-    def __init__(self):
-        super().__init__()
-        self.title("工具集合")
-        self.geometry("400x300")
+root = tk.Tk()
+root.title("Radio Button 示例")
 
-        label = ttk.Label(self, text="请选择工具")
-        label.pack(pady=20)
+# 创建一个变量来跟踪选择
+radio_var = tk.IntVar()
+radio_var.set(1)  # 设置默认选择的按钮
 
-        # 创建多个工具按钮
-        tools = ["工具1", "工具2", "工具3"]
-        for tool in tools:
-            btn = ttk.Button(self, text=tool, command=lambda t=tool: self.open_tool(t))
-            btn.pack(pady=10)
+# 创建两个单选按钮
+radio_button_1 = tk.Radiobutton(root, text="选项 1", variable=radio_var, value=1)
+radio_button_2 = tk.Radiobutton(root, text="选项 2", variable=radio_var, value=2)
 
-    def open_tool(self, tool_name):
-        # 打开子窗口
-        tool_window = ToolWindow(self, tool_name)
-        tool_window.grab_set()  # 使得子窗口为模式窗口
+# 布局单选按钮
+radio_button_1.pack(padx=10, pady=5)
+radio_button_2.pack(padx=10, pady=5)
 
-if __name__ == "__main__":
-    app = MainApp()
-    app.mainloop()
+# 创建按钮来显示选择的选项
+show_button = tk.Button(root, text="显示选择", command=show_selected_option)
+show_button.pack(pady=10)
+
+root.mainloop()
