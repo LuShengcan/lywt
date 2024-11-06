@@ -9,31 +9,14 @@ from .shutdown_pc.shutdown_pc_gui import ShutdownPC
 class App(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.create_window()
-        self.create_widgets()
-        self.grid_widgets()
-
-    def create_window(self):
         self.title('文件处理工具')
-        self.window_width = 600
-        self.window_height = 400
-        screen_width = self.winfo_screenwidth()
-        screen_height = self.winfo_screenheight()
-        x = (screen_width - self.window_width) // 2
-        y = (screen_height - self.window_height) // 2
-        self.geometry(f"{self.window_width}x{self.window_height}+{x}+{y}")
+        self.create_widgets()
 
     def create_widgets(self):
-        self.button_00 = ttk.Button(self, text='文件MD5计算', command=self.fileMD5)
-        self.button_10 = ttk.Button(self, text='ascii和字符转换', command=self.ascii)
-        self.button_20 = ttk.Button(self, text='号段生成', command=self.imei)
-        self.button_30 = ttk.Button(self, text='计划关机', command=self.ShutdownPC)
-
-    def grid_widgets(self):
-        self.button_00.grid(row=0, column=0)
-        self.button_10.grid(row=1, column=0)
-        self.button_20.grid(row=2, column=0)
-        self.button_30.grid(row=3, column=0)
+        ttk.Button(self, text='文件MD5计算', width=15, command=self.fileMD5).grid(row=0, column=0, sticky=tk.W, padx=2, pady=2)
+        ttk.Button(self, text='ascii和字符转换', width=15, command=self.ascii).grid(row=0, column=1, sticky=tk.W, padx=2, pady=2)
+        ttk.Button(self, text='号段生成', width=15, command=self.imei).grid(row=1, column=0, sticky=tk.W, padx=2, pady=2)
+        ttk.Button(self, text='计划关机', width=15, command=self.ShutdownPC).grid(row=1, column=1, sticky=tk.W, padx=2, pady=2)
 
     def fileMD5(self):
         subWin = FileMD5(self)
