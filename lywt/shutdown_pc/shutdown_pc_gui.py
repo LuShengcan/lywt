@@ -7,12 +7,9 @@ from .shutdown_pc_cli import shut_down_at, shutdown_after, cancel_shutdown
 class ShutdownPC(tk.Toplevel):
     def __init__(self, parent):
         super().__init__(parent)
-        self.creat_window()
+        self.title('定时关机')
         self.creat_vars()
         self.create_widgets()
-
-    def creat_window(self):
-        self.title('定时关机')
 
     def creat_vars(self):
         self.hour = StringVar(value='00')
