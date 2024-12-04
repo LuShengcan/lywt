@@ -4,21 +4,18 @@ from tkinter import StringVar, messagebox
 from .shutdown_pc_cli import shut_down_at, shutdown_after, cancel_shutdown
 
 
-class ShutdownPC(tk.Toplevel):
+class ShutdownPC(ttk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
-        self.title('定时关机')
-        self.creat_vars()
-        self.create_widgets()
 
-    def creat_vars(self):
+        # 变量
         self.hour = StringVar(value='00')
         self.minute = StringVar(value='00')
         self.radio_var = tk.IntVar(value=1)
 
-    def create_widgets(self):
+        # 控件
         self.f0 = ttk.Frame(self)
-        self.f0.pack(side=tk.TOP, padx=2, pady=2)
+        self.f0.pack(fill=tk.X,padx=50, pady=50)
 
         ttk.Label(self.f0, text="时间/时长选择:").grid(row=0, column=0, padx=2, pady=2)
         ttk.Combobox(self.f0, values=[f"{i:02d}" for i in range(24)], textvariable=self.hour).grid(row=0, column=1, padx=2, pady=2)

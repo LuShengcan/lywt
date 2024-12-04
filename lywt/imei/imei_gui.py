@@ -6,10 +6,9 @@ import random
 from .imei_cli import generate_imei
 
 
-class IMEI(tk.Toplevel):
+class IMEI(ttk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
-        self.title('IMEI生成')
 
         # 变量
         self.barcode = StringVar()
@@ -21,42 +20,45 @@ class IMEI(tk.Toplevel):
         self.batsn2 = StringVar()
 
         # 控件
-        ttk.Label(self, text='barcode').grid(row=1, column=0, padx=10, pady=5)
-        barcode_entry = ttk.Entry(self, textvariable=self.barcode)
+        f0 = ttk.Frame(self)
+        f0.pack(side=tk.TOP, pady=10)
+
+        ttk.Label(f0, text='barcode').grid(row=1, column=0, padx=10, pady=5)
+        barcode_entry = ttk.Entry(f0, textvariable=self.barcode)
         barcode_entry.grid(row=1, column=1, padx=10, pady=5)
         barcode_entry.bind("<Button-1>", lambda event: self.copy_while_click(event, barcode_entry))
 
-        ttk.Label(self, text='imei1').grid(row=2, column=0, padx=10, pady=5)
-        imei1_enrtry = ttk.Entry(self, textvariable=self.imei1)
+        ttk.Label(f0, text='imei1').grid(row=2, column=0, padx=10, pady=5)
+        imei1_enrtry = ttk.Entry(f0, textvariable=self.imei1)
         imei1_enrtry.grid(row=2, column=1, padx=10, pady=5)
         imei1_enrtry.bind("<Button-1>", lambda event: self.copy_while_click(event, imei1_enrtry))
 
-        ttk.Label(self, text='imei2').grid(row=3, column=0, padx=10, pady=5)
-        imei2_entry = ttk.Entry(self, textvariable=self.imei2)
+        ttk.Label(f0, text='imei2').grid(row=3, column=0, padx=10, pady=5)
+        imei2_entry = ttk.Entry(f0, textvariable=self.imei2)
         imei2_entry.grid(row=3, column=1, padx=10, pady=5)
         imei2_entry.bind("<Button-1>", lambda event: self.copy_while_click(event, imei2_entry))
 
-        ttk.Label(self, text='meid1').grid(row=4, column=0, padx=10, pady=5)
-        meid1_entry = ttk.Entry(self, textvariable=self.meid1)
+        ttk.Label(f0, text='meid1').grid(row=4, column=0, padx=10, pady=5)
+        meid1_entry = ttk.Entry(f0, textvariable=self.meid1)
         meid1_entry.grid(row=4, column=1, padx=10, pady=5)
         meid1_entry.bind("<Button-1>", lambda event: self.copy_while_click(event, meid1_entry))
 
-        ttk.Label(self, text='meid2').grid(row=5, column=0, padx=10, pady=5)
-        meid2_entry = ttk.Entry(self, textvariable=self.meid2)
+        ttk.Label(f0, text='meid2').grid(row=5, column=0, padx=10, pady=5)
+        meid2_entry = ttk.Entry(f0, textvariable=self.meid2)
         meid2_entry.grid(row=5, column=1, padx=10, pady=5)
         meid2_entry.bind("<Button-1>", lambda event: self.copy_while_click(event, meid2_entry))
 
-        ttk.Label(self, text='batsn1').grid(row=6, column=0, padx=10, pady=5)
-        batsn1_entry = ttk.Entry(self, textvariable=self.batsn1)
+        ttk.Label(f0, text='batsn1').grid(row=6, column=0, padx=10, pady=5)
+        batsn1_entry = ttk.Entry(f0, textvariable=self.batsn1)
         batsn1_entry.grid(row=6, column=1, padx=10, pady=5)
         batsn1_entry.bind("<Button-1>", lambda event: self.copy_while_click(event, batsn1_entry))
 
-        ttk.Label(self, text='batsn2').grid(row=7, column=0, padx=10, pady=5)
-        batsn2_entry = ttk.Entry(self, textvariable=self.batsn2)
+        ttk.Label(f0, text='batsn2').grid(row=7, column=0, padx=10, pady=5)
+        batsn2_entry = ttk.Entry(f0, textvariable=self.batsn2)
         batsn2_entry.grid(row=7, column=1, padx=10, pady=5)
         batsn2_entry.bind("<Button-1>", lambda event: self.copy_while_click(event, batsn2_entry))
 
-        ttk.Button(self, text='生成', command=self.gen).grid(row=8, column=1, padx=10, pady=10)
+        ttk.Button(f0, text='生成', command=self.gen).grid(row=8, column=1, padx=10, pady=10)
 
     def copy_while_click(self, event, entry: ttk.Entry):
         content = entry.get()
@@ -88,4 +90,3 @@ class IMEI(tk.Toplevel):
         self.imei2.set(generate_imei(current_time))
         self.meid2.set(current_time)
         self.batsn2.set(current_time[:7] + random.choice(year) + random.choice(month) + random.choice(day) + current_time[:7])
-

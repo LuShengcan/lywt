@@ -10,26 +10,17 @@ class App(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title('文件处理工具')
-        self.geometry(f'300x300+{int(self.winfo_screenwidth()*0.35)}+{int(self.winfo_screenheight()*0.25)}')
+        # self.geometry(f'650x350+{int(self.winfo_screenwidth()*0.35)}+{int(self.winfo_screenheight()*0.25)}')
 
-        # 控件
-        ttk.Button(self, text='文件MD5计算', width=15, command=self.fileMD5).pack(pady=10)
-        ttk.Button(self, text='ascii和字符转换', width=15, command=self.ascii).pack(pady=10)
-        ttk.Button(self, text='号段生成', width=15, command=self.imei).pack(pady=10)
-        ttk.Button(self, text='计划关机', width=15, command=self.ShutdownPC).pack(pady=10)
+        notebook = ttk.Notebook(self)
+        notebook.pack(fill=tk.X, padx=5)
 
-    def fileMD5(self):
-        subWin = FileMD5(self)
-        subWin.grab_set()
+        self.imei = IMEI(self)
+        self.filemd5 = FileMD5(self)
+        self.ascii = Ascii(self)
+        self.shutdownpc = ShutdownPC(self)
 
-    def ascii(self):
-        subWin = Ascii(self)
-        subWin.grab_set()
-
-    def imei(self):
-        subWin = IMEI(self)
-        subWin.grab_set()
-
-    def ShutdownPC(self):
-        subWin = ShutdownPC(self)
-        subWin.grab_set()
+        notebook.add(self.imei, text='号段生成')
+        notebook.add(self.filemd5, text='文件md5计算')
+        notebook.add(self.ascii, text='编码转换')
+        notebook.add(self.shutdownpc, text='计划关机')

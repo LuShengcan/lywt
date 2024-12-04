@@ -4,7 +4,7 @@ from tkinter import scrolledtext
 from .ascii2char_cli import *
 
 
-class Ascii(tk.Toplevel):
+class Ascii(ttk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
         self.creat_window()
@@ -13,14 +13,8 @@ class Ascii(tk.Toplevel):
         # windnd.hook_dropfiles(self.text_10, func=self.drag_files)
 
     def creat_window(self):
-        self.title('Ascii码转换')
         self.window_width = 800
         self.window_height = 200
-        screen_width = self.winfo_screenwidth()
-        screen_height = self.winfo_screenheight()
-        x = (screen_width - self.window_width) // 2
-        y = (screen_height - self.window_height) // 2
-        self.geometry(f"{self.window_width}x{self.window_height}+{x}+{y}")
 
     def create_widgets(self):
         # 控件命名规则, label_00 表示在row 0，col 0 的标签
