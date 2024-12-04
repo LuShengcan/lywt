@@ -10,13 +10,13 @@ class App(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title('文件处理工具')
-        self.create_widgets()
+        self.geometry(f'300x300+{int(self.winfo_screenwidth()*0.35)}+{int(self.winfo_screenheight()*0.25)}')
 
-    def create_widgets(self):
-        ttk.Button(self, text='文件MD5计算', width=15, command=self.fileMD5).grid(row=0, column=0, sticky=tk.W, padx=2, pady=2)
-        ttk.Button(self, text='ascii和字符转换', width=15, command=self.ascii).grid(row=0, column=1, sticky=tk.W, padx=2, pady=2)
-        ttk.Button(self, text='号段生成', width=15, command=self.imei).grid(row=1, column=0, sticky=tk.W, padx=2, pady=2)
-        ttk.Button(self, text='计划关机', width=15, command=self.ShutdownPC).grid(row=1, column=1, sticky=tk.W, padx=2, pady=2)
+        # 控件
+        ttk.Button(self, text='文件MD5计算', width=15, command=self.fileMD5).pack(pady=10)
+        ttk.Button(self, text='ascii和字符转换', width=15, command=self.ascii).pack(pady=10)
+        ttk.Button(self, text='号段生成', width=15, command=self.imei).pack(pady=10)
+        ttk.Button(self, text='计划关机', width=15, command=self.ShutdownPC).pack(pady=10)
 
     def fileMD5(self):
         subWin = FileMD5(self)
