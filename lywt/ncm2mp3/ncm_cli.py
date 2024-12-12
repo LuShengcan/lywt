@@ -3,7 +3,7 @@ import struct
 import base64
 import json
 import os
-from crypto.Cipher import AES
+from Crypto.Cipher import AES
 
 
 def dump(source_file: str, dest_dir: str):
