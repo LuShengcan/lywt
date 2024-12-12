@@ -5,7 +5,7 @@ from datetime import datetime
 
 
 def get_small_version(update):
-    max_small_version = -1
+    max_small_version = 0
 
     for file in os.listdir('dist'):
         match = re.match('.*?v(\\d+)\\.(\\d+).*?', file)
