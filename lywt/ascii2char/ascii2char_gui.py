@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, messagebox
 from tkinter import scrolledtext
 from .ascii2char_cli import *
 
@@ -39,7 +39,11 @@ class Ascii(ttk.Frame):
     def ascii2char(self):
         ascii_hex = self.text_01.get('1.0', tk.END).rstrip()
         self.text_11.delete('1.0', tk.END)
-        self.text_11.insert(tk.END, ascii_hex2char(ascii_hex))
+        try:
+            ret = ascii_hex2char(ascii_hex)
+            self.text_11.insert(tk.END, ret)
+        except ValueError:
+            messagebox.showerror('error', '请输入合法的字符串')
 
     def char2ascii(self):
         src = self.text_11.get('1.0', tk.END).rstrip()
