@@ -6,6 +6,13 @@ from .imei.imei_gui import IMEI
 from .shutdown_pc.shutdown_pc_gui import ShutdownPC
 from .ncm2mp3.ncm_gui import NCM
 
+import sys
+
+# pyqt6
+from PyQt6.QtWidgets import QApplication, QMainWindow
+
+from .Ui_MainWindow import Ui_MainWindow
+
 
 class App(tk.Tk):
     def __init__(self):
@@ -27,3 +34,17 @@ class App(tk.Tk):
         notebook.add(self.ascii, text='  编码转换  ')
         notebook.add(self.shutdownpc, text='  计划关机  ')
         notebook.add(self.ncm, text='  网易云音乐ncm格式转换  ')
+
+
+class MainWindow(QMainWindow, Ui_MainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)  # 通过 setupUi 加载 UI
+        self.init_ui()  # 可选：初始化一些额外的 UI 逻辑
+
+    def init_ui(self):
+        # 这里可以添加按钮、输入框等组件的事件绑定
+        self.pushButton.clicked.connect(self.on_button_click)
+
+    def on_button_click(self):
+        self.label.setText("按钮被点击了！")  # 例如更改一个 QLabel 的文本
