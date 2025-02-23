@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>894</width>
-    <height>600</height>
+    <width>506</width>
+    <height>392</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>实用工具集合</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>70</y>
-      <width>571</width>
+      <x>20</x>
+      <y>10</y>
+      <width>451</width>
       <height>341</height>
      </rect>
     </property>
@@ -33,13 +33,29 @@
      <widget class="QWidget" name="gridLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>170</x>
-        <y>50</y>
+        <x>30</x>
+        <y>30</y>
         <width>221</width>
-        <height>171</height>
+        <height>178</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>meid_1</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QLineEdit" name="meid_1"/>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="barcode"/>
+       </item>
+       <item row="4" column="1">
+        <widget class="QLineEdit" name="imei_2"/>
+       </item>
        <item row="1" column="0">
         <widget class="QLabel" name="label_2">
          <property name="text">
@@ -48,34 +64,58 @@
         </widget>
        </item>
        <item row="3" column="1">
-        <widget class="QLineEdit" name="lineEdit_2"/>
+        <widget class="QLineEdit" name="imei_1"/>
        </item>
-       <item row="1" column="1">
-        <widget class="QLineEdit" name="lineEdit"/>
-       </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="label">
+       <item row="7" column="0">
+        <widget class="QLabel" name="label_6">
          <property name="text">
-          <string>imei1</string>
+          <string>batsn_1</string>
          </property>
         </widget>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>meid_2</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QLineEdit" name="meid_2"/>
        </item>
        <item row="4" column="0">
         <widget class="QLabel" name="label_3">
          <property name="text">
-          <string>imei2</string>
+          <string>imei_2</string>
          </property>
         </widget>
        </item>
-       <item row="4" column="1">
-        <widget class="QLineEdit" name="lineEdit_3"/>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>imei_1</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="0">
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>batsn_2</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="1">
+        <widget class="QLineEdit" name="batsn_1"/>
+       </item>
+       <item row="8" column="1">
+        <widget class="QLineEdit" name="batsn_2"/>
        </item>
       </layout>
      </widget>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="generateButton">
       <property name="geometry">
        <rect>
-        <x>230</x>
+        <x>80</x>
         <y>240</y>
         <width>75</width>
         <height>24</height>
@@ -108,7 +148,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>894</width>
+     <width>506</width>
      <height>22</height>
     </rect>
    </property>

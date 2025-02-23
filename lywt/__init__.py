@@ -6,12 +6,12 @@ from .imei.imei_gui import IMEI
 from .shutdown_pc.shutdown_pc_gui import ShutdownPC
 from .ncm2mp3.ncm_gui import NCM
 
-import sys
+from .imei import imei_cli
 
 # pyqt6
-from PyQt6.QtWidgets import QApplication, QMainWindow
+from PyQt6.QtWidgets import QMainWindow, QLineEdit, QApplication
 
-from .Ui_MainWindow import Ui_MainWindow
+from .ui.Ui_MainWindow import Ui_MainWindow
 
 
 class App(tk.Tk):
@@ -36,15 +36,35 @@ class App(tk.Tk):
         notebook.add(self.ncm, text='  网易云音乐ncm格式转换  ')
 
 
-class MainWindow(QMainWindow, Ui_MainWindow):
+class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setupUi(self)  # 通过 setupUi 加载 UI
-        self.init_ui()  # 可选：初始化一些额外的 UI 逻辑
+        self.ui = Ui_MainWindow()     # 创建 UI 实例
+        self.ui.setupUi(self)         # 绑定 UI 到当前窗口
 
-    def init_ui(self):
-        # 这里可以添加按钮、输入框等组件的事件绑定
-        self.pushButton.clicked.connect(self.on_button_click)
+        self.init_imei_gen()
 
-    def on_button_click(self):
-        self.label.setText("按钮被点击了！")  # 例如更改一个 QLabel 的文本
+    def init_imei_gen(self):
+        """初始化号段生成页"""
+
+        # 点击文本控件后把值复制到剪贴板
+        fields = ["barcode", "imei_1", "imei_2", "meid_1", "meid_2", "batsn_1", "batsn_2"]
+        for field in fields:
+            ui_element: QLineEdit = getattr(self.ui, field)
+            ui_element.mousePressEvent = lambda event, w=ui_element: self.copy_to_clipboard(w)
+
+        self.ui.generateButton.clicked.connect(self.on_generateButton_clicked)  # 生成号段按钮点击事件
+
+    def copy_to_clipboard(self, widget: QLineEdit):
+        """复制文本到剪贴板"""
+        clipboard = QApplication.clipboard()
+        clipboard.setText(widget.text())
+
+    def on_generateButton_clicked(self):
+        device_info = imei_cli.generate_device_info()
+
+        fields = ["barcode", "imei_1", "imei_2", "meid_1", "meid_2", "batsn_1", "batsn_2"]
+
+        for field in fields:
+            ui_element: QLineEdit = getattr(self.ui, field)
+            ui_element.setText(getattr(device_info, field))
