@@ -6,8 +6,26 @@
 > 同时，该合集也在持续更新中，欢迎网友们提出新的需求，本人会酌情进行添加。
 
 
+# 代码运行
+直接运行根目录下的 main.py
 
-# 如何安装
+# 打包代码发布pypi
+> 打包命令:
+> python setup.py sdist build
+
+> 发布命令:
+> twine upload dist/lywt-0.1.1.tar.gz
+
+# 打包软件
+> 打包成单文件格式
+> pyinstaller lywt-F.spec
+
+> 打包成目录格式
+> pyinstaller lywt.spec
+
+
+
+# cli 接口安装
 
 ## 完整安装 lywt
 
