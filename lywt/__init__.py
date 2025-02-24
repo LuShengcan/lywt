@@ -7,9 +7,13 @@ from .shutdown_pc.shutdown_pc_gui import ShutdownPC
 from .ncm2mp3.ncm_gui import NCM
 
 from .imei import imei_cli
+from .fileMD5.fileMD5_cli import md5
+
 
 # pyqt6
-from PyQt6.QtWidgets import QMainWindow, QLineEdit, QApplication
+from PyQt6.QtCore import Qt
+from PyQt6.QtWidgets import QMainWindow, QLineEdit, QApplication, QFileDialog, QTableWidget, QTableWidgetItem
+from PyQt6.QtGui import QDragEnterEvent, QDropEvent
 
 from .ui.Ui_MainWindow import Ui_MainWindow
 
@@ -43,6 +47,7 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)         # 绑定 UI 到当前窗口
 
         self.init_imei_gen()
+        self.init_file_md5()
 
     def init_imei_gen(self):
         """初始化号段生成页"""
@@ -53,14 +58,14 @@ class MainWindow(QMainWindow):
             ui_element: QLineEdit = getattr(self.ui, field)
             ui_element.mousePressEvent = lambda event, w=ui_element: self.copy_to_clipboard(w)
 
-        self.ui.generateButton.clicked.connect(self.on_generateButton_clicked)  # 生成号段按钮点击事件
+        self.ui.generateButton.clicked.connect(self.generate_numbers)  # 生成号段按钮点击事件
 
     def copy_to_clipboard(self, widget: QLineEdit):
         """复制文本到剪贴板"""
         clipboard = QApplication.clipboard()
         clipboard.setText(widget.text())
 
-    def on_generateButton_clicked(self):
+    def generate_numbers(self):
         device_info = imei_cli.generate_device_info()
 
         fields = ["barcode", "imei_1", "imei_2", "meid_1", "meid_2", "batsn_1", "batsn_2"]
@@ -68,3 +73,46 @@ class MainWindow(QMainWindow):
         for field in fields:
             ui_element: QLineEdit = getattr(self.ui, field)
             ui_element.setText(getattr(device_info, field))
+
+    def init_file_md5(self):
+        self.ui.btn_selectFile.clicked.connect(lambda: self.add_files(self.select_file()))
+
+        self.ui.md5Table.setColumnCount(2)
+        self.ui.md5Table.setHorizontalHeaderLabels(["文件路径", "MD5 值"])
+        self.ui.md5Table.setColumnWidth(0, 440)  # 设置第一列宽度
+        self.ui.md5Table.setColumnWidth(1, 255)  # 设置第二列宽度
+        self.ui.md5Table.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)  # 只读模式
+
+        self.setAcceptDrops(True)   # 设置窗口支持拖放
+
+    def add_files(self, files):
+        # add file and md5 to list
+        for file in files:
+            rc = self.ui.md5Table.rowCount()
+            self.ui.md5Table.insertRow(rc)
+
+            path_item = QTableWidgetItem(file)
+            path_item.setFlags(Qt.ItemFlag.ItemIsSelectable | Qt.ItemFlag.ItemIsEnabled)   # 允许复制
+            self.ui.md5Table.setItem(rc, 0, path_item)
+
+            md5_item = QTableWidgetItem(md5(file))
+            md5_item.setFlags(Qt.ItemFlag.ItemIsSelectable | Qt.ItemFlag.ItemIsEnabled)
+            self.ui.md5Table.setItem(rc, 1, md5_item)
+
+    def select_file(self):
+        file_paths, _ = QFileDialog.getOpenFileNames(self, "选择文件")
+        return file_paths
+
+    def dragEnterEvent(self, event: QDragEnterEvent):
+        """处理拖动进入事件"""
+        if event.mimeData().hasUrls():
+            event.acceptProposedAction()
+
+    def dropEvent(self, event: QDropEvent):
+        """处理文件拖放事件"""
+        if event.mimeData().hasUrls():
+            files = []
+            for url in event.mimeData().urls():
+                files.append(url.toLocalFile())
+
+            self.add_files(files)

@@ -1,12 +1,17 @@
 import hashlib
 
 
-def md5(path):
+def md5(path: str) -> str:
+    md5 = hashlib.md5()
+
     try:
         with open(path, 'rb') as f:
-            return hashlib.md5(f.read()).hexdigest()
-    except:
-        return 'fail to open file'
+            while chunk := f.read(8192):
+                md5.update(chunk)
+    except Exception as e:
+        return e
+
+    return md5.hexdigest()
 
 
 if __name__ == '__main__':

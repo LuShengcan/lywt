@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>525</width>
-    <height>417</height>
+    <width>788</width>
+    <height>521</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,14 +17,14 @@
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>10</y>
-      <width>451</width>
-      <height>341</height>
+      <x>10</x>
+      <y>30</y>
+      <width>765</width>
+      <height>451</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -33,8 +33,8 @@
      <widget class="QWidget" name="gridLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>30</y>
+        <x>230</x>
+        <y>70</y>
         <width>221</width>
         <height>178</height>
        </rect>
@@ -115,8 +115,8 @@
      <widget class="QPushButton" name="generateButton">
       <property name="geometry">
        <rect>
-        <x>80</x>
-        <y>240</y>
+        <x>300</x>
+        <y>280</y>
         <width>75</width>
         <height>24</height>
        </rect>
@@ -126,10 +126,33 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="tab_3">
+    <widget class="QWidget" name="file_md5">
      <attribute name="title">
       <string>文件md5计算</string>
      </attribute>
+     <widget class="QPushButton" name="btn_selectFile">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>20</y>
+        <width>111</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>选择或拖动文件</string>
+      </property>
+     </widget>
+     <widget class="QTableWidget" name="md5Table">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>61</y>
+        <width>713</width>
+        <height>351</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_4">
      <attribute name="title">
@@ -148,7 +171,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>525</width>
+     <width>788</width>
      <height>22</height>
     </rect>
    </property>
