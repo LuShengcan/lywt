@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import StringVar, messagebox
-from .shutdown_pc_cli import shut_down_at, shutdown_after, cancel_shutdown
+from .shutdown_pc_cli import shutdown_at, shutdown_after, cancel_shutdown
 
 
 class ShutdownPC(ttk.Frame):
@@ -31,7 +31,7 @@ class ShutdownPC(ttk.Frame):
     def make(self):
         status = self.radio_var.get()
         if status == 1:
-            shut_down_at(int(self.hour.get()), int(self.minute.get()))
+            shutdown_at(int(self.hour.get()), int(self.minute.get()))
         elif status == 2:
             shutdown_after(int(self.hour.get()), int(self.minute.get()))
         else:

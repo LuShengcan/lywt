@@ -9,6 +9,7 @@ from .ncm2mp3.ncm_gui import NCM
 from .imei import imei_cli
 from .fileMD5.fileMD5_cli import md5
 from .ascii2char.ascii2char_cli import ascii_hex2char, char2ascii_hex
+from .shutdown_pc.shutdown_pc_cli import shutdown_at, shutdo
 
 
 # pyqt6
@@ -50,6 +51,7 @@ class MainWindow(QMainWindow):
         self.init_imei_gen()
         self.init_file_md5()
         self.init_ascii2char()
+        self.init_shutdown_pc()
 
     def init_imei_gen(self):
         """初始化号段生成页"""
@@ -141,3 +143,21 @@ class MainWindow(QMainWindow):
             ret = char2ascii_hex(src)
 
         self.ui.hexEdit.setPlainText(ret)
+
+    def init_shutdown_pc(self):
+        self.ui.hourSpinBox.setRange(0,23)
+        self.ui.hourSpinBox.setWrapping(True)
+
+        self.ui.minuteSpinBox.setRange(0, 59)
+        self.ui.minuteSpinBox.setWrapping(True)
+
+        self.ui.createPlanPushButton.clicked.connect(self.shutdown_pc)
+
+    def shutdown_pc(self):
+        selected_radio_id = self.ui.shutdownButtonGroup.checkedId()
+        if selected_radio_id == self.ui.shutdownButtonGroup.id(self.ui.atRadioButton):
+
+
+        elif selected_radio_id == self.ui.shutdownButtonGroup.id(self.ui.afterRadioButton):
+
+

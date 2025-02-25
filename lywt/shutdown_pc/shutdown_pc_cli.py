@@ -13,7 +13,7 @@ def shutdown_after(hours: int, minutes: int):
     shutdown(time)
 
 
-def shut_down_at(hour: int, minute: int):
+def shutdown_at(hour: int, minute: int):
     now = datetime.now()
     target_time = now.replace(hour=hour, minute=minute)
     time = int((target_time - now).total_seconds())
