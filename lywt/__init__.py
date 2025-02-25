@@ -8,12 +8,13 @@ from .ncm2mp3.ncm_gui import NCM
 
 from .imei import imei_cli
 from .fileMD5.fileMD5_cli import md5
+from .ascii2char.ascii2char_cli import ascii_hex2char, char2ascii_hex
 
 
 # pyqt6
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QMainWindow, QLineEdit, QApplication, QFileDialog, QTableWidget, QTableWidgetItem
-from PyQt6.QtGui import QDragEnterEvent, QDropEvent
+from PyQt6.QtGui import QDragEnterEvent, QDropEvent, QFont
 
 from .ui.Ui_MainWindow import Ui_MainWindow
 
@@ -48,6 +49,7 @@ class MainWindow(QMainWindow):
 
         self.init_imei_gen()
         self.init_file_md5()
+        self.init_ascii2char()
 
     def init_imei_gen(self):
         """初始化号段生成页"""
@@ -116,3 +118,26 @@ class MainWindow(QMainWindow):
                 files.append(url.toLocalFile())
 
             self.add_files(files)
+
+    def init_ascii2char(self):
+        font = QFont("Consolas", 14)
+        self.ui.hexEdit.setFont(font)
+        self.ui.strEdit.setFont(font)
+
+        self.ui.hex2strButton.clicked.connect(self.hex2str)
+        self.ui.str2hexButton.clicked.connect(self.str2hex)
+
+    def hex2str(self):
+        src = self.ui.hexEdit.toPlainText()
+        ret = ascii_hex2char(src)
+        self.ui.strEdit.setPlainText(ret)
+
+    def str2hex(self):
+        src = self.ui.strEdit.toPlainText()
+
+        if self.ui.if0xCheckBox.isChecked():
+            ret = char2ascii_hex(src, True)
+        else:
+            ret = char2ascii_hex(src)
+
+        self.ui.hexEdit.setPlainText(ret)

@@ -1,7 +1,11 @@
 import re
 
-def char2ascii_hex(src: str) -> str:
-    return ''.join([f'{ord(c):02x} ' for c in src])
+def char2ascii_hex(src: str, hex_head:bool=False) -> str:
+    if hex_head:
+        ret = ''.join([f'0X{ord(c):02x} ' for c in src])
+    else:
+        ret = ''.join([f'{ord(c):02x} ' for c in src])
+    return ret
 
 def modify_hex_string(src:str):
     """
@@ -22,4 +26,5 @@ def ascii_hex2char(src: str) -> str:
     try:
         return bytes.fromhex(modify_hex_string(src)).decode('utf-8')
     except Exception as e:
+        print(e)
         raise ValueError('输入不合法')

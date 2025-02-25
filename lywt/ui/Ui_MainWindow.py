@@ -16,7 +16,7 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.tabWidget = QtWidgets.QTabWidget(parent=self.centralwidget)
-        self.tabWidget.setGeometry(QtCore.QRect(10, 30, 765, 451))
+        self.tabWidget.setGeometry(QtCore.QRect(10, 20, 765, 451))
         self.tabWidget.setObjectName("tabWidget")
         self.tab = QtWidgets.QWidget()
         self.tab.setObjectName("tab")
@@ -85,6 +85,21 @@ class Ui_MainWindow(object):
         self.tabWidget.addTab(self.file_md5, "")
         self.tab_4 = QtWidgets.QWidget()
         self.tab_4.setObjectName("tab_4")
+        self.hexEdit = QtWidgets.QTextEdit(parent=self.tab_4)
+        self.hexEdit.setGeometry(QtCore.QRect(30, 60, 381, 131))
+        self.hexEdit.setObjectName("hexEdit")
+        self.strEdit = QtWidgets.QTextEdit(parent=self.tab_4)
+        self.strEdit.setGeometry(QtCore.QRect(30, 220, 381, 131))
+        self.strEdit.setObjectName("strEdit")
+        self.hex2strButton = QtWidgets.QPushButton(parent=self.tab_4)
+        self.hex2strButton.setGeometry(QtCore.QRect(440, 60, 91, 24))
+        self.hex2strButton.setObjectName("hex2strButton")
+        self.str2hexButton = QtWidgets.QPushButton(parent=self.tab_4)
+        self.str2hexButton.setGeometry(QtCore.QRect(440, 220, 91, 24))
+        self.str2hexButton.setObjectName("str2hexButton")
+        self.if0xCheckBox = QtWidgets.QCheckBox(parent=self.tab_4)
+        self.if0xCheckBox.setGeometry(QtCore.QRect(440, 260, 151, 20))
+        self.if0xCheckBox.setObjectName("if0xCheckBox")
         self.tabWidget.addTab(self.tab_4, "")
         self.tab_2 = QtWidgets.QWidget()
         self.tab_2.setObjectName("tab_2")
@@ -120,7 +135,7 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menu_7.menuAction())
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -137,6 +152,25 @@ class Ui_MainWindow(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "号段生成"))
         self.btn_selectFile.setText(_translate("MainWindow", "选择或拖动文件"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.file_md5), _translate("MainWindow", "文件md5计算"))
+        self.hexEdit.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"hr { height: 1px; border-width: 0; }\n"
+"li.unchecked::marker { content: \"\\2610\"; }\n"
+"li.checked::marker { content: \"\\2612\"; }\n"
+"</style></head><body style=\" font-family:\'Microsoft YaHei UI\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt;\"><br /></p></body></html>"))
+        self.strEdit.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"hr { height: 1px; border-width: 0; }\n"
+"li.unchecked::marker { content: \"\\2610\"; }\n"
+"li.checked::marker { content: \"\\2612\"; }\n"
+"</style></head><body style=\" font-family:\'Microsoft YaHei UI\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
+        self.hex2strButton.setText(_translate("MainWindow", "16进制转字符"))
+        self.str2hexButton.setText(_translate("MainWindow", "字符转16进制"))
+        self.if0xCheckBox.setText(_translate("MainWindow", "转换结果是否要加 \"0X\""))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), _translate("MainWindow", "编码转换"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "计划关机"))
         self.menu.setTitle(_translate("MainWindow", "文件"))
