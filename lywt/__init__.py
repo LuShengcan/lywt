@@ -9,7 +9,7 @@ from .ncm2mp3.ncm_gui import NCM
 from .imei import imei_cli
 from .fileMD5.fileMD5_cli import md5
 from .ascii2char.ascii2char_cli import ascii_hex2char, char2ascii_hex
-from .shutdown_pc.shutdown_pc_cli import shutdown_at, shutdo
+from .shutdown_pc.shutdown_pc_cli import shutdown_at, shutdown_after
 
 
 # pyqt6
@@ -57,7 +57,7 @@ class MainWindow(QMainWindow):
         """初始化号段生成页"""
 
         # 点击文本控件后把值复制到剪贴板
-        fields = ["barcode", "imei_1", "imei_2", "meid_1", "meid_2", "batsn_1", "batsn_2"]
+        fields = ["barcode", "imei_1", "imei_2", "meid_1", "meid_2", "batsn_1", "batsn_2", "bt_mac", "wifi_mac", "msn"]
         for field in fields:
             ui_element: QLineEdit = getattr(self.ui, field)
             ui_element.mousePressEvent = lambda event, w=ui_element: self.copy_to_clipboard(w)
@@ -72,7 +72,7 @@ class MainWindow(QMainWindow):
     def generate_numbers(self):
         device_info = imei_cli.generate_device_info()
 
-        fields = ["barcode", "imei_1", "imei_2", "meid_1", "meid_2", "batsn_1", "batsn_2"]
+        fields = ["barcode", "imei_1", "imei_2", "meid_1", "meid_2", "batsn_1", "batsn_2", "bt_mac", "wifi_mac", "msn"]
 
         for field in fields:
             ui_element: QLineEdit = getattr(self.ui, field)
@@ -145,7 +145,7 @@ class MainWindow(QMainWindow):
         self.ui.hexEdit.setPlainText(ret)
 
     def init_shutdown_pc(self):
-        self.ui.hourSpinBox.setRange(0,23)
+        self.ui.hourSpinBox.setRange(0, 23)
         self.ui.hourSpinBox.setWrapping(True)
 
         self.ui.minuteSpinBox.setRange(0, 59)
@@ -156,8 +156,8 @@ class MainWindow(QMainWindow):
     def shutdown_pc(self):
         selected_radio_id = self.ui.shutdownButtonGroup.checkedId()
         if selected_radio_id == self.ui.shutdownButtonGroup.id(self.ui.atRadioButton):
-
-
+            pass
         elif selected_radio_id == self.ui.shutdownButtonGroup.id(self.ui.afterRadioButton):
-
-
+            pass
+        else:
+            pass

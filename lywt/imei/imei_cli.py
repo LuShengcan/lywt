@@ -47,6 +47,11 @@ def generate_device_info():
     batsn_1 = time_1[:7] + random.choice(year) + random.choice(month) + random.choice(day) + time_1[:7]
     batsn_2 = time_2[:7] + random.choice(year) + random.choice(month) + random.choice(day) + time_2[:7]
 
-    device_info = namedtuple("device_info", ['barcode', 'imei_1', 'imei_2', 'meid_1', 'meid_2', 'batsn_1', 'batsn_2'])
+    hex_chars = "0123456789ABCDEF"
+    bt_mac = ''.join(random.choices(hex_chars, k=12))
+    wifi_mac = ''.join(random.choices(hex_chars, k=12))
 
-    return device_info(barcode, imei_1, imei_2, meid_1, meid_2, batsn_1, batsn_2)
+    msn = time_1[:12]
+    device_info = namedtuple("device_info", ['barcode', 'imei_1', 'imei_2', 'meid_1', 'meid_2', 'batsn_1', 'batsn_2', 'bt_mac', "wifi_mac", "msn"])
+
+    return device_info(barcode, imei_1, imei_2, meid_1, meid_2, batsn_1, batsn_2, bt_mac, wifi_mac, msn)
